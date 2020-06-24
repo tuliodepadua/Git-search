@@ -13,7 +13,7 @@ function Body() {
         <Col md='2'>
           <Row>{user.profile && <CardUser />}</Row>
         </Col>
-        <Col md='10'>wewqe</Col>
+        <Col md='10'></Col>
       </Row>
     </Container>
   );

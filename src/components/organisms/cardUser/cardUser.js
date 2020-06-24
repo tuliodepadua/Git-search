@@ -1,10 +1,13 @@
 import React from "react";
-import { Container, Col, Row, Image, Button } from "react-bootstrap";
+import { Container, Col, Row, Image, Nav } from "react-bootstrap";
 import { useUser } from "../../../context/User";
+import { useInteractions } from "../../../context/Interactions";
+import { api } from "../../../services/service";
 
 import "./styles.scss";
 function CardUser() {
   const { user, setUser } = useUser();
+  const { Interactions, setInteractions } = useInteractions();
 
   function normalizeField(fieldValue, grid) {
     return fieldValue !== null ? (
@@ -27,8 +30,16 @@ function CardUser() {
         <Col md='12' className='carduser_infos'>
           <Row>
             <Col md='12'>
-              <Button variant='info'>Repositórios</Button>
-              <Button variant='info'>Info</Button>
+              <Nav className='justify-content-center' activeKey='/home'>
+                <Nav.Item>
+                  <Nav.Link onClick={() => requestRepos()}>Repos</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link onClick={() => console.log("Starred")}>
+                    Starred
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
             </Col>
 
             <Col md='12'>
@@ -53,6 +64,28 @@ function CardUser() {
       </Row>
     </Container>
   );
+
+  function requestRepos() {
+    if (user.repos) {
+      console.log("Existe o atributo repositorio");
+    } else {
+      api
+        .get(`users/${user.profile.login}/repos`)
+        .then(function (response) {
+          let userUpdate = user;
+          userUpdate.repos = response.data;
+          setUser(userUpdate);
+          //   setInteractions(userUpdate);
+          sessionStorage.setItem(
+            userUpdate.profile.login,
+            JSON.stringify(userUpdate)
+          );
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
 }
 
 export default CardUser;

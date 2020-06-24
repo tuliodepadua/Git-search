@@ -1,6 +1,14 @@
+@import "./assets/styles/styles.scss";
 .App {
   background-color: #00838f;
   height: 100vh;
+
+  a {
+    color: $colorLink;
+  }
+  a:hover {
+    color: $colorLink--hover;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

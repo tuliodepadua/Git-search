@@ -63,7 +63,7 @@ function Header() {
   }
 
   return (
-    <Navbar bg='dark' variant='dark'>
+    <Navbar variant='dark'>
       <Navbar.Brand href='#home'>
         <FaGithub className='navbar_icon' />
         Search Git
