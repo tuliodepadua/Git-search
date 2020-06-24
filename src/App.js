@@ -4,12 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
+import UserProvider from "./context/User";
+
 function App() {
   return (
     <div className='App'>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }

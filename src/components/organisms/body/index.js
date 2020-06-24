@@ -1,13 +1,19 @@
 import React from "react";
 import "./styles.scss";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
+import { useUser } from "../../../context/User";
+import CardUser from "../cardUser/cardUser";
 
 function Body() {
+  const { user } = useUser();
+
   return (
-    <Container className='body'>
+    <Container fluid>
       <Row>
-        <Col md='6'>sadsdas</Col>
-        <Col md='6'>asdsad</Col>
+        <Col md='2'>
+          <Row>{user.profile && <CardUser />}</Row>
+        </Col>
+        <Col md='10'>wewqe</Col>
       </Row>
     </Container>
   );

@@ -1,34 +1,65 @@
-import React, { useState } from "react";
-import { Navbar, FormControl, Nav, Form, Button } from "react-bootstrap";
-
+import React, { useState, useEffect } from "react";
+import {
+  Navbar,
+  FormControl,
+  Nav,
+  Form,
+  FormGroup,
+  Button,
+} from "react-bootstrap";
 import { FaGithub, FaSistrix } from "react-icons/fa";
 import "./styles.scss";
-
 import { api } from "../../../services/service";
+import { useUser } from "../../../context/User";
+import { useParams } from "react-router";
+
 function Header() {
   const [words, setWords] = useState("");
+  const { user, setUser } = useUser();
+  let { id } = useParams();
+
+  useEffect(() => {
+    if (id !== undefined && user.profile === undefined) {
+      setWords(id);
+      handleClick();
+    }
+  });
 
   const handleChange = (input) => {
     setWords(input.target.value);
   };
 
   const handleKeyPress = (e) => {
-    e.key === "Enter" && handleClick();
+    if (e.key === "Enter") {
+      handleClick();
+      e.preventDefault();
+    }
   };
 
   function handleClick() {
-    api
-      .get(`users/${words}`)
-      .then(function (response) {
-        console.log(response);
-        console.log("Carro");
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
+    let userdata = sessionStorage.getItem(words);
+
+    if (userdata) {
+      setUser(JSON.parse(userdata));
+    } else {
+      api
+        .get(`users/${words}`)
+        .then(function (response) {
+          userdata = {
+            profile: response.data,
+          };
+
+          setUser(userdata);
+
+          sessionStorage.setItem(
+            userdata.profile.login,
+            JSON.stringify(userdata)
+          );
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
   return (
@@ -37,23 +68,21 @@ function Header() {
         <FaGithub className='navbar_icon' />
         Search Git
       </Navbar.Brand>
-      <Nav className='mr-auto'>
-        {/* <Nav.Link href='#home'>Home</Nav.Link>
-        <Nav.Link href='#features'>Features</Nav.Link>
-        <Nav.Link href='#pricing'>Pricing</Nav.Link> */}
-      </Nav>
+
       <Form inline>
-        <FormControl
-          type='text'
-          placeholder='Buscar usuário'
-          className='mr-sm-4'
-          value={words}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-        <Button variant='outline-info' onClick={() => handleClick()}>
-          <FaSistrix />
-        </Button>
+        <Form.Group>
+          <FormControl
+            type='text'
+            placeholder='Buscar usuário'
+            className='mr-sm-4'
+            value={words}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <Button variant='outline-info' onClick={() => handleClick()}>
+            <FaSistrix />
+          </Button>
+        </Form.Group>
       </Form>
     </Navbar>
   );
