@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Col, Row, Image, Nav } from "react-bootstrap";
 import { useUser } from "../../../context/User";
-import { useInteractions } from "../../../context/Interactions";
+import { usePgs } from "../../../context/Pgs";
 import { api } from "../../../services/service";
 
 import "./styles.scss";
 function CardUser() {
   const { user, setUser } = useUser();
-  const { Interactions, setInteractions } = useInteractions();
+  const { Pgs, setPgs } = usePgs();
 
   function normalizeField(fieldValue, grid) {
     return fieldValue !== null ? (
@@ -18,31 +18,25 @@ function CardUser() {
   }
 
   return (
-    <Container fluid className='carduser'>
+    <Container fluid className="carduser">
       <Row>
-        <Col md='12' className='carduser_avatar'>
-          <Image
-            src={user.profile.avatar_url}
-            roundedCircle
-            alt={`Avatar do perfil ${user.profile.name}`}
-          />
+        <Col md="12" className="carduser_avatar">
+          <Image src={user.profile.avatar_url} roundedCircle alt={`Avatar do perfil ${user.profile.name}`} />
         </Col>
-        <Col md='12' className='carduser_infos'>
+        <Col md="12" className="carduser_infos">
           <Row>
-            <Col md='12'>
-              <Nav className='justify-content-center' activeKey='/home'>
+            <Col md="12">
+              <Nav className="justify-content-center" activeKey="/home">
                 <Nav.Item>
                   <Nav.Link onClick={() => requestRepos()}>Repos</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link onClick={() => console.log("Starred")}>
-                    Starred
-                  </Nav.Link>
+                  <Nav.Link onClick={() => console.log("Starred")}>Starred</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Col>
 
-            <Col md='12'>
+            <Col md="12">
               <h2>{user.profile.name}</h2>
             </Col>
 
@@ -68,6 +62,7 @@ function CardUser() {
   function requestRepos() {
     if (user.repos) {
       console.log("Existe o atributo repositorio");
+      setPgs("repos");
     } else {
       api
         .get(`users/${user.profile.login}/repos`)
@@ -75,11 +70,8 @@ function CardUser() {
           let userUpdate = user;
           userUpdate.repos = response.data;
           setUser(userUpdate);
-          //   setInteractions(userUpdate);
-          sessionStorage.setItem(
-            userUpdate.profile.login,
-            JSON.stringify(userUpdate)
-          );
+          setPgs("repos");
+          sessionStorage.setItem(userUpdate.profile.login, JSON.stringify(userUpdate));
         })
         .catch(function (error) {
           console.log(error);

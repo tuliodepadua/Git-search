@@ -5,18 +5,18 @@ import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 import UserProvider from "./context/User";
-import InteractionsProvider from "./context/Interactions";
+import PgsProvider from "./context/Pgs";
 
 function App() {
   return (
     <div className='App'>
-      <InteractionsProvider>
+      <PgsProvider>
         <UserProvider>
           <BrowserRouter>
             <Routes />
           </BrowserRouter>
         </UserProvider>
-      </InteractionsProvider>
+      </PgsProvider>
     </div>
   );
 }
