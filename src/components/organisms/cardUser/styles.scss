@@ -1,7 +1,7 @@
 @import "../../../assets/styles/styles.scss";
 
 .carduser {
-  background: $primary;
+  background: $color__primary;
   padding-top: 15px;
   padding-bottom: 15px;
   height: calc(100vh - 66px);
@@ -19,12 +19,12 @@
       font-size: 30px;
       text-align: center;
       margin: 20px 0px 10px 0px;
-      color: $white;
+      color: $color__white;
     }
     p {
       text-align: center;
       margin: 0px;
-      color: $white;
+      color: $color__white;
     }
   }
 }

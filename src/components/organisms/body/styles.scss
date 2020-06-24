@@ -1,6 +1,10 @@
 @import "../../../assets/styles/styles.scss";
 
 .body {
-  background-color: $bgcolor;
+  background-color: $color__bgcolor;
   text-align: left;
+  .body__right {
+    height: calc(100vh - 66px);
+    overflow-y: auto;
+  }
 }
