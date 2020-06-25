@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import { useUser } from '../../../context/User';
 import { usePages } from '../../../context/Pages';
 import CardUser from '../cardUser/cardUser';
@@ -16,7 +16,6 @@ function Body() {
       case 'repos':
         return <CardRepository items={user.repos} />;
       case 'starred':
-        console.log('starred');
         return <CardRepository items={user.starred} />;
 
       default:
@@ -31,9 +30,12 @@ function Body() {
           <Row>{user.profile && <CardUser />}</Row>
         </Col>
         <Col xs="12" sm="12" lg="9" xl="10" className="body__right">
-          <Row>
-            {loadPage()}
-          </Row>
+          {Pages === 'loadRepositorios' && (
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          )}
+          <Row>{loadPage()}</Row>
         </Col>
       </Row>
     </Container>

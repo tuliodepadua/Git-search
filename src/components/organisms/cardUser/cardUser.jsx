@@ -3,10 +3,10 @@ import {
   Container, Col, Row, Image, Nav,
 } from 'react-bootstrap';
 import { GoRepo, GoOrganization } from 'react-icons/go';
+
 import { useUser } from '../../../context/User';
 import { usePages } from '../../../context/Pages';
 import api from '../../../services/service';
-
 import './styles.scss';
 
 export default function CardUser() {
@@ -82,9 +82,11 @@ export default function CardUser() {
                 <Nav.Link className={`BtnTheme ${Pages === 'repos' && 'BtnTheme--active'}`} onClick={() => requestRepos()}>Repos</Nav.Link>
               </Nav.Item>
               <Nav.Item>
+
                 <Nav.Link className={`BtnTheme ${Pages === 'starred' && 'BtnTheme--active'}`} onClick={() => requestStarred()}>
                   Starred
                 </Nav.Link>
+
               </Nav.Item>
             </Nav>
           </Col>

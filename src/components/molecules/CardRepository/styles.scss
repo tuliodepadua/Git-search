@@ -1,14 +1,14 @@
 @import '../../../assets/styles/base.scss';
 
-.respos {
+.repository {
   color: $color__white;
   margin: 10px 0;
-  .respos__content {
+  .repository__content {
     border-radius: 5px;
     background-color: $color__primary;
     min-height: 20px;
   }
-  .respos__header {
+  .repository__header {
     padding: 10px 40px 10px 10px;
     background-color: $color__tertiary;
     h4 {
@@ -23,14 +23,14 @@
     }
   }
 
-  .respos__description {
+  .repository__description {
     @extend %scrollBar;
     padding: 10px;
     height: 100px;
     overflow-y: auto;
     color: $color__secundary;
   }
-  .respos__footer {
+  .repository__footer {
     padding: 10px;
     min-height: 20px;
     border-top: 1px solid $color__tertiary;

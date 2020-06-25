@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Navbar,
-  FormControl,
-  Form,
-  Col,
-} from 'react-bootstrap';
+import { Navbar, FormControl, Form, Col } from 'react-bootstrap';
 import { FaGithub, FaSistrix } from 'react-icons/fa';
 import './styles.scss';
 import { useParams } from 'react-router';
@@ -61,7 +56,7 @@ function Header() {
 
             sessionStorage.setItem(
               userdata.profile.login,
-              JSON.stringify(userdata),
+              JSON.stringify(userdata)
             );
           })
           .catch((error) => {
@@ -87,8 +82,11 @@ function Header() {
   });
 
   return (
-    <Navbar variant="dark" className={`navbar ${Pages === 'inithome' && 'navbar--inicial'}`}>
-      <Navbar.Brand className="navbar__brand" onClick={() => clearUserSelected('all')}>
+    <Navbar variant="dark" className="navbar   ">
+      <Navbar.Brand
+        className="navbar__brand col-4 col-sm-4 col-lg-3 col-xl-2"
+        onClick={() => clearUserSelected('all')}
+      >
         <FaGithub className="navbar__icon" />
         <span>Search Git</span>
       </Navbar.Brand>
@@ -97,24 +95,21 @@ function Header() {
           <FormControl
             type="text"
             placeholder="Buscar usuário"
-            className="mr-sm-2"
             value={words}
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
-          <Link className="BtnTheme" onClick={() => handleClick()}>
+          <Link
+            className="navbar__findUserButton"
+            onClick={() => handleClick()}
+          >
             <FaSistrix />
           </Link>
         </Form.Group>
       </Form>
       <Col className="mr-auto navbar__feedBackBusca">
-        {FeedBack !== '' && (
-        <p>
-          {FeedBack}
-        </p>
-        )}
+        {FeedBack !== '' && <p>{FeedBack}</p>}
       </Col>
-
     </Navbar>
   );
 }
