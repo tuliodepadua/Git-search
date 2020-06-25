@@ -42,6 +42,28 @@ export default function CardUser() {
     }
   }
 
+  function requestStarred() {
+    if (user.starred) {
+      setPages('starred');
+    } else {
+      api
+        .get(`users/${user.profile.login}/starred`)
+        .then((response) => {
+          const userUpdate = user;
+          userUpdate.starred = response.data;
+          setUser(userUpdate);
+          setPages('starred');
+          sessionStorage.setItem(
+            userUpdate.profile.login,
+            JSON.stringify(userUpdate),
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   return (
     <Container fluid className="carduser">
       <Row>
@@ -60,7 +82,7 @@ export default function CardUser() {
                   <Nav.Link onClick={() => requestRepos()}>Repos</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link onClick={() => console.log('Starred')}>
+                  <Nav.Link onClick={() => requestStarred()}>
                     Starred
                   </Nav.Link>
                 </Nav.Item>

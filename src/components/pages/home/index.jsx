@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../organisms/header';
-import Body from '../../organisms/body';
+import Body from '../../organisms/body/Body';
 import './styles.scss';
 import { useUser } from '../../../context/User';
 
@@ -10,9 +10,6 @@ function Home() {
   return (
     <>
       <Header />
-
-      {user.teste && <h2>sadsd</h2>}
-
       <Body />
     </>
   );

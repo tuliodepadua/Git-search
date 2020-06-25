@@ -4,11 +4,28 @@ import { useUser } from '../../../context/User';
 import { usePages } from '../../../context/Pages';
 import CardUser from '../cardUser/cardUser';
 import CardRepos from '../../molecules/CardRepos/CardRepos';
+import CardStarred from '../../molecules/CardStarred/CardStarred';
 import './styles.scss';
 
 function Body() {
   const { user } = useUser();
   const { Pages } = usePages();
+
+  function loadPage() {
+    switch (Pages) {
+      case 'repos':
+        return user.repos.map((item, index) => (
+          <CardRepos key={index} item={item} />
+        ));
+
+      case 'starred':
+        console.log('starred');
+        return <CardStarred items={user.starred} />;
+
+      default:
+        break;
+    }
+  }
 
   return (
     <Container fluid className="body">
@@ -18,10 +35,7 @@ function Body() {
         </Col>
         <Col md="10" className="body__right">
           <Row>
-            {Pages === 'repos' &&
-              user.repos.map((item, index) => (
-                <CardRepos key={index} item={item} />
-              ))}
+            {loadPage()}
           </Row>
         </Col>
       </Row>
