@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
+import UserProvider from './context/User';
+import PagesProvider from './context/Pages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
-import UserProvider from './context/User';
-import PagesProvider from './context/Pages';
 
 function App() {
   return (

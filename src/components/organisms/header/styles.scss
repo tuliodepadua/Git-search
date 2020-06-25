@@ -1,9 +1,60 @@
-@import "../../../assets/styles/styles.scss";
+@import '../../../assets/styles/styles.scss';
 
-nav {
+.navbar {
   background-color: $color__tertiary;
+  transition: all 3s linear;
+  -webkit-transition: all 3s linear;
+  -moz-transition: all 3s linear;
+  .navbar__brand {
+    cursor: pointer;
+  }
+  .navbar__icon {
+    margin-right: 10px;
+    font-size: 40px;
+  }
+  .navbar__findUser {
+    margin-left: 20px;
+  }
+
+  .navbar__feedBackBusca {
+    margin-left: 20px;
+    color: $color__danger;
+    p {
+      margin-bottom: 0px;
+    }
+  }
 }
-.navbar_icon {
-  margin-right: 10px;
-  font-size: 40px;
+
+.navbar.navbar--inicial {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-color: $color__tertiary;
+  transition: all 3s linear;
+  -webkit-transition: all 3s linear;
+  -moz-transition: all 3s linear;
+  .navbar__brand {
+    width: 300px;
+    position: absolute;
+    left: calc(50% - 150px);
+    span {
+      width: 100%;
+    }
+  }
+  .navbar__icon {
+    margin-right: 10px;
+    font-size: 120px;
+  }
+  .navbar__findUser {
+    margin-left: 20px;
+  }
+
+  .navbar__feedBackBusca {
+    margin-left: 20px;
+    color: $color__danger;
+    p {
+      margin-bottom: 0px;
+    }
+  }
 }

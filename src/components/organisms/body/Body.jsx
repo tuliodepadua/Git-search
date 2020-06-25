@@ -3,8 +3,8 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { useUser } from '../../../context/User';
 import { usePages } from '../../../context/Pages';
 import CardUser from '../cardUser/cardUser';
-import CardRepos from '../../molecules/CardRepos/CardRepos';
-import CardStarred from '../../molecules/CardStarred/CardStarred';
+import CardRepository from '../../molecules/CardRepository/CardRepository';
+
 import './styles.scss';
 
 function Body() {
@@ -14,13 +14,10 @@ function Body() {
   function loadPage() {
     switch (Pages) {
       case 'repos':
-        return user.repos.map((item, index) => (
-          <CardRepos key={index} item={item} />
-        ));
-
+        return <CardRepository items={user.repos} />;
       case 'starred':
         console.log('starred');
-        return <CardStarred items={user.starred} />;
+        return <CardRepository items={user.starred} />;
 
       default:
         break;
