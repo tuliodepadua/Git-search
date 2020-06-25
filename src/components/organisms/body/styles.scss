@@ -1,11 +1,20 @@
-@import '../../../assets/styles/styles.scss';
+@import '../../../assets/styles/base.scss';
 
 .body {
   background-color: $color__secundary;
   text-align: left;
   .body__right {
+    @extend %scrollBar;
     height: calc(100vh - 66px);
     overflow-y: auto;
     padding: 15px 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .body {
+    .body__right {
+      padding: 5px 15px;
+    }
   }
 }

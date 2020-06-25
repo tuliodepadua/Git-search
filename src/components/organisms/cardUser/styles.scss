@@ -1,11 +1,11 @@
-@import "../../../assets/styles/styles.scss";
+@import '../../../assets/styles/base.scss';
 
 .carduser {
   background: $color__primary;
   padding-top: 15px;
   padding-bottom: 15px;
   height: calc(100vh - 66px);
-  .carduser_avatar {
+  .carduser__avatar {
     text-align: center;
     img {
       width: 80%;
@@ -14,7 +14,7 @@
     }
   }
 
-  .carduser_infos {
+  .carduser__infos {
     h2 {
       font-size: 30px;
       text-align: center;
@@ -27,4 +27,115 @@
       color: $color__white;
     }
   }
+
+  .carduser__navbar {
+    padding: 20px 0;
+  }
+
+  .carduser__list {
+    padding: 0px;
+    list-style: none;
+    text-align: center;
+    li {
+      font-size: 12px;
+      display: inline-block;
+      padding: 0 5px;
+      color: $color__white;
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
 }
+
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {
+// }
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 992px) {
+  .carduser {
+    background: $color__primary;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 200px;
+    position: relative;
+
+    .carduser__avatar {
+      text-align: center;
+      img {
+        width: 80%;
+        max-width: 100px;
+        height: auto;
+        display: inline-block;
+      }
+    }
+    .carduser__infos {
+      h2 {
+        font-size: 30px;
+        text-align: left;
+        margin: 10px 0px 5px 0px;
+        color: $color__white;
+      }
+      p {
+        text-align: left;
+        margin: 0px;
+        color: $color__white;
+      }
+    }
+    .carduser__list {
+      padding: 0px;
+      list-style: none;
+      text-align: left;
+      li {
+        font-size: 12px;
+        display: inline-block;
+        padding: 0px 5px 0px 0px;
+        color: $color__white;
+        svg {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .carduser {
+    height: 160px;
+
+    .carduser__navbar {
+      padding: 8px 0;
+      .BtnTheme {
+        font-size: 12px;
+        padding: 2px 5px;
+        margin: 0px 1px;
+      }
+    }
+    .xs-removed {
+      display: none;
+    }
+    .carduser__avatar {
+      padding: 0px;
+    }
+    .carduser__infos {
+      h2 {
+        font-size: 20px;
+        text-align: left;
+      }
+      p {
+        text-align: left;
+        margin: 0px;
+        font-size: 12px;
+        color: $color__white;
+      }
+    }
+  }
+}
+
+// // Large devices (desktops, 992px and up)
+// @media (min-width: 992px) {
+// }
+
+// // Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) {
+// }

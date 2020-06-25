@@ -1,8 +1,10 @@
-@import './assets/styles/styles.scss';
+@import './assets/styles/base.scss';
 a {
+  @extend %transicao;
   color: $color__Link;
 }
 a:hover {
+  @extend %transicao;
   color: $color__Link--hover;
 }
 

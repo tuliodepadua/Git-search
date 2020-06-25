@@ -27,10 +27,10 @@ function Body() {
   return (
     <Container fluid className="body">
       <Row>
-        <Col md="2">
+        <Col xs="12" sm="12" lg="3" xl="2">
           <Row>{user.profile && <CardUser />}</Row>
         </Col>
-        <Col md="10" className="body__right">
+        <Col xs="12" sm="12" lg="9" xl="10" className="body__right">
           <Row>
             {loadPage()}
           </Row>

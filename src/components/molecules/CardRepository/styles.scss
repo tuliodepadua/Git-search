@@ -1,4 +1,4 @@
-@import '../../../assets/styles/styles.scss';
+@import '../../../assets/styles/base.scss';
 
 .respos {
   color: $color__white;
@@ -9,31 +9,22 @@
     min-height: 20px;
   }
   .respos__header {
-    padding: 10px;
+    padding: 10px 40px 10px 10px;
     background-color: $color__tertiary;
+    h4 {
+      font-size: 18px;
+      margin: 0px;
+    }
     a {
       position: absolute;
       right: 10px;
-      top: 7px;
+      top: 0px;
       font-size: 24px;
     }
   }
-  .respos__description::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: $color__primary;
-  }
-  .respos__description::-webkit-scrollbar {
-    width: 12px;
-    background-color: $color__primary;
-  }
 
-  .respos__description::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: $color__secundary;
-  }
   .respos__description {
+    @extend %scrollBar;
     padding: 10px;
     height: 100px;
     overflow-y: auto;
@@ -44,13 +35,19 @@
     min-height: 20px;
     border-top: 1px solid $color__tertiary;
     color: $color__secundary;
-    span {
-      padding-right: 10px;
-      font-size: 12px;
-    }
-    svg {
-      font-size: 14px;
-      margin-bottom: 3px;
+    ul {
+      padding: 0px;
+      list-style: none;
+      margin: 0px;
+      li {
+        padding-right: 10px;
+        font-size: 12px;
+        display: inline-block;
+        svg {
+          font-size: 14px;
+          margin-bottom: 3px;
+        }
+      }
     }
   }
 }

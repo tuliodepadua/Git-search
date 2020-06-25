@@ -3,13 +3,12 @@ import {
   Navbar,
   FormControl,
   Form,
-  Button,
   Col,
 } from 'react-bootstrap';
 import { FaGithub, FaSistrix } from 'react-icons/fa';
 import './styles.scss';
 import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import feedBackStatusError from '../../../services/helper';
 import api from '../../../services/service';
 import { useUser } from '../../../context/User';
@@ -22,6 +21,20 @@ function Header() {
   const { Pages, setPages } = usePages();
   const { id } = useParams();
   const history = useHistory();
+
+  const handleChange = (input) => {
+    setWords(input.target.value.replace(/\s/g, ''));
+  };
+
+  const clearUserSelected = (coverage = '') => {
+    if (coverage === 'all') {
+      setWords('');
+      setFeedBack('');
+    }
+    history.push('/');
+    setUser({});
+    setPages('home');
+  };
 
   function handleClick() {
     if (words !== '') {
@@ -52,22 +65,12 @@ function Header() {
             );
           })
           .catch((error) => {
+            clearUserSelected();
             setFeedBack(feedBackStatusError(error.response.status));
           });
       }
     }
   }
-
-  useEffect(() => {
-    if (id !== undefined && user.profile === undefined) {
-      setWords(id);
-      handleClick();
-    }
-  });
-
-  const handleChange = (input) => {
-    setWords(input.target.value);
-  };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -76,16 +79,16 @@ function Header() {
     }
   };
 
-  const clearUserSelected = () => {
-    history.push('/');
-    setWords('');
-    setUser({});
-    setPages('home');
-  };
+  useEffect(() => {
+    if (id !== undefined && user.profile === undefined) {
+      setWords(id);
+      handleClick();
+    }
+  });
 
   return (
     <Navbar variant="dark" className={`navbar ${Pages === 'inithome' && 'navbar--inicial'}`}>
-      <Navbar.Brand className="navbar__brand" onClick={() => clearUserSelected()}>
+      <Navbar.Brand className="navbar__brand" onClick={() => clearUserSelected('all')}>
         <FaGithub className="navbar__icon" />
         <span>Search Git</span>
       </Navbar.Brand>
@@ -99,13 +102,17 @@ function Header() {
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
-          <Button variant="outline-info" onClick={() => handleClick()}>
+          <Link className="BtnTheme" onClick={() => handleClick()}>
             <FaSistrix />
-          </Button>
+          </Link>
         </Form.Group>
       </Form>
       <Col className="mr-auto navbar__feedBackBusca">
-        {FeedBack !== '' && <p>{FeedBack}</p>}
+        {FeedBack !== '' && (
+        <p>
+          {FeedBack}
+        </p>
+        )}
       </Col>
 
     </Navbar>
