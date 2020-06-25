@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState, useEffect } from 'react';
 import { Navbar, FormControl, Form, Col } from 'react-bootstrap';
 import { FaGithub, FaSistrix } from 'react-icons/fa';
@@ -99,6 +101,7 @@ function Header() {
             onChange={handleChange}
             onKeyPress={handleKeyPress}
           />
+
           <Link
             className="navbar__findUserButton"
             onClick={() => handleClick()}

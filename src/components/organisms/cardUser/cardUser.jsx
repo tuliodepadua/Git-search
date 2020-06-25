@@ -38,6 +38,7 @@ export default function CardUser() {
           );
         })
         .catch((error) => {
+          // eslint-disable-next-line
           console.log(error);
         });
     }
@@ -60,6 +61,7 @@ export default function CardUser() {
           );
         })
         .catch((error) => {
+          // eslint-disable-next-line
           console.log(error);
         });
     }

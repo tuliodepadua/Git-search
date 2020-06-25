@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+// eslint-disable-next-line react/jsx-no-target-blank
 import React, { useEffect } from 'react';
 import {
   Row, Col, OverlayTrigger, Tooltip,
@@ -27,6 +29,7 @@ function CardRepository({ items }) {
                 </Tooltip>
                   )}
             >
+
               <a target="_blank" href={item.html_url}>
                 <MdPublic />
               </a>

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, Col, Row, Spinner } from 'react-bootstrap';
+import {
+  Container, Col, Row, Spinner,
+} from 'react-bootstrap';
 import { useUser } from '../../../context/User';
 import { usePages } from '../../../context/Pages';
 import CardUser from '../cardUser/cardUser';
@@ -10,7 +12,7 @@ import './styles.scss';
 function Body() {
   const { user } = useUser();
   const { Pages } = usePages();
-
+  // eslint-disable-next-line
   function loadPage() {
     switch (Pages) {
       case 'repos':
